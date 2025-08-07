@@ -31,7 +31,7 @@ app.use(cors({
 // Body parsers, reading data from body into req.body
 app.use(express.json({ limit: '10kb' })); // For JSON bodies
 app.use(express.urlencoded({ extended: true, limit: '10kb' })); // For URL-encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 // Cookie parser, reading cookies from req.headers into req.cookies
 app.use(cookieParser());
 
