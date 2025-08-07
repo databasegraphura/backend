@@ -23,6 +23,7 @@
     "mongoose": "^8.16.5",
     "morgan": "^1.10.1",
     "nodemon": "^3.1.10",
+    "serverless-http": "^3.2.0",
     "uuid": "^11.1.0",
     "validator": "^13.15.15",
     "xss-clean": "^0.1.4"
