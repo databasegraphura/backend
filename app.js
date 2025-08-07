@@ -24,14 +24,14 @@ const app = express();
 
 // Enable CORS (Cross-Origin Resource Sharing)
 app.use(cors({
-  origin: 'http://localhost:3000',  // ✅ exact origin, not '*'
-  credentials: true                 // ✅ allow cookies/headers
+  origin: process.env.FRONTEND_URL,  // ✅ exact origin, not '*'
+  credentials: true                // ✅ allow cookies/headers
 }));
 
 // Body parsers, reading data from body into req.body
 app.use(express.json({ limit: '10kb' })); // For JSON bodies
 app.use(express.urlencoded({ extended: true, limit: '10kb' })); // For URL-encoded bodies
-
+app.use(bodyParser.urlencoded({ extended: true }));
 // Cookie parser, reading cookies from req.headers into req.cookies
 app.use(cookieParser());
 
@@ -59,5 +59,8 @@ app.all("/*splat", (req, res, next) => {
 
 // GLOBAL ERROR HANDLING MIDDLEWARE - This should always be the last middleware
 app.use(globalErrorHandler);
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'success', message: 'Welcome to the API!' });
+});
 
 module.exports = app;
