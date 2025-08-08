@@ -25,7 +25,7 @@ const app = express();
 // Enable CORS (Cross-Origin Resource Sharing)
 // WITH THIS:
 const allowedOrigins = [
-  'https://executive-gla61ldzz-databasegraphuras-projects.vercel.app'
+  process.env.FRONTEND_URL_1
 ];
 app.use(cors({
   origin: function (origin, callback) {
