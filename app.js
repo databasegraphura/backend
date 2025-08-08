@@ -25,23 +25,22 @@ const app = express();
 // Enable CORS (Cross-Origin Resource Sharing)
 // WITH THIS:
 const allowedOrigins = [
-  process.env.FRONTEND_URL_1
+  process.env.FRONTEND_URL_1,
+  process.env.FRONTEND_URL_2,
+  process.env.FRONTEND_URL_3
 ];
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like Postman or mobile apps)
     if (!origin) return callback(null, true);
-    
-    // Check if the origin is in our allowed list
     if (allowedOrigins.indexOf(origin) === -1) {
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
-    
     return callback(null, true);
   },
   credentials: true
 }));
+
 
 // Body parsers, reading data from body into req.body
 app.use(express.json({ limit: '10kb' })); // For JSON bodies
