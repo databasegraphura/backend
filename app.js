@@ -25,11 +25,8 @@ const app = express();
 // Enable CORS (Cross-Origin Resource Sharing)
 // WITH THIS:
 const allowedOrigins = [
-  'https://executive-gla61ldzz-databasegraphuras-projects.vercel.app',
-  process.env.FRONTEND_URL_2,
-  process.env.FRONTEND_URL_3
+  'https://executive-gla61ldzz-databasegraphuras-projects.vercel.app'
 ];
-
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like Postman or mobile apps)
