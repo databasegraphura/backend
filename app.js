@@ -27,7 +27,8 @@ const app = express();
 const allowedOrigins = [
   process.env.FRONTEND_URL_1,
   process.env.FRONTEND_URL_2,
-  process.env.FRONTEND_URL_3
+  process.env.FRONTEND_URL_3,
+  process.env.FRONTEND_URL_4
 ];
 
 app.use(cors({
