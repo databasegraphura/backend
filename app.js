@@ -29,16 +29,9 @@ const allowedOrigins = [
   process.env.FRONTEND_URL_2,
   process.env.FRONTEND_URL_3
 ];
+
 app.use(cors({
-  origin: function (origin, callback) {
-    console.log('Origin:', origin);
-    console.log('Allowed Origins:', allowedOrigins);
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error('CORS policy does not allow this origin'), false);
-    }
-    return callback(null, true);
-  },
+  origin: allowedOrigins,
   credentials: true,
 }));
 
