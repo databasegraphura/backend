@@ -1,4 +1,9 @@
-const serverless = require('serverless-http');
-const app = require('../app');
+// api/index.js
+const app = require('../app'); // Import your Express app
+const connectDB = require('../config/db'); // Import your DB connection function
 
-module.exports = serverless(app);
+// Connect to the database
+connectDB();
+
+// Export the app for Vercel
+module.exports = app;
