@@ -44,19 +44,10 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' })); // For URL-encod
 // Cookie parser, reading cookies from req.headers into req.cookies
 app.use(cookieParser());
 
-// Handle undefined routes - This should always be placed AFTER all your specific routes
-// Handle undefined routes — fix for Express v5
-app.all("/*splat", (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-});
-
-// GLOBAL ERROR HANDLING MIDDLEWARE - This should always be the last middleware
-app.use(globalErrorHandler);
+// 2) ROUTES
 app.get('/', (req, res) => {
   res.status(200).json({ status: 'success', message: 'Welcome to the API!' });
 });
-
-// 2) ROUTES
 
 // Authentication routes (signup, login, logout)
 app.use('/api/v1/auth', authRoutes);
@@ -70,5 +61,14 @@ app.use('/api/v1/reports', reportRoutes);
 app.use('/api/v1/calllogs', callLogRoutes);
 app.use('/api/v1/transfer', transferRoutes);
 app.use('/api/v1/salary', salaryRoutes);
+
+// Handle undefined routes - This should always be placed AFTER all your specific routes
+// Handle undefined routes — fix for Express v5
+app.all("/*splat", (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
+
+// GLOBAL ERROR HANDLING MIDDLEWARE - This should always be the last middleware
+app.use(globalErrorHandler);
 
 module.exports = app;
